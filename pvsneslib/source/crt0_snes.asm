@@ -269,7 +269,7 @@ tcc__start:
     ; clear .bss section
     ; FIXME: SECTIONSTART_.bss、SECTIONEND_.bss が複数存在し、そのうち1つの bss section しか初期化されないのでハードコードしておく。
     ; ldx #(((SECTIONEND_.bss-SECTIONSTART_.bss) & $fffe) + 2)
-    ldx #($8000 - $2000)
+    ldx #($0000 - $2000)
     beq +
 -   dex
     dex
