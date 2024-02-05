@@ -23,6 +23,33 @@ tcc__mul:
 	.endr
   rtl
 
+; 16x8
+tcc__muls:
+      sep #$20
+      phb
+      lda #$00
+      pha
+      plb
+
+      lda tcc__r10
+      sta $211b
+      lda tcc__r10+1
+      sta $211b
+      lda tcc__r9
+      sta $211c
+      rep #$20
+      nop
+      nop
+      nop
+      nop
+      nop
+      nop
+      nop
+      lda $2134
+
+      plb
+      rtl
+
 ; adapted from 6502 16x16 mult (same manual)
 ; this is a 32x32 => 32 multiplication routine
 ; we actually only need 16x16 => 32, maybe there's something to optimize
