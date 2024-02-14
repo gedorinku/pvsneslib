@@ -233,6 +233,7 @@ void marioupdate(u8 idx)
 }
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize sound engine (take some time)

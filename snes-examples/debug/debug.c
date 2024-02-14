@@ -9,6 +9,7 @@
 #include <snes.h>
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

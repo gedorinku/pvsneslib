@@ -20,6 +20,7 @@ extern char SOUNDBANK__;
 u8 i, keyapressed = 0,keylpressed = 0,keyrpressed = 0;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
 

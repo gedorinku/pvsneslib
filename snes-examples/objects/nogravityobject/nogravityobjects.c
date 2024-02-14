@@ -19,6 +19,7 @@ extern char mapzelda, objzelda;
 u16 sprnum; // to manage update of each sprite on screen
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

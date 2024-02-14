@@ -29,6 +29,7 @@ extern char backgroundMap, backgroundMap_end;
 #define PAL6 6
 #define PAL7 7
 
+int sa1_main(void) {}
 int main(void) {
     consoleInit();
 

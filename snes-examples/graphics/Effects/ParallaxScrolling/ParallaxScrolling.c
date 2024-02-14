@@ -13,6 +13,7 @@ extern char palette;
 extern char map;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

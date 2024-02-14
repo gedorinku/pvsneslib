@@ -11,6 +11,7 @@
 extern char snesfont, snespal;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     unsigned short pad0;

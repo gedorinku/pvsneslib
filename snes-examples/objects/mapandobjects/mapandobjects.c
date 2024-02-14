@@ -21,6 +21,7 @@ extern char palsprite;                                 // for all sprites
 u16 nbobjects;										// to init more than sprite object in map
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

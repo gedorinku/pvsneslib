@@ -149,6 +149,7 @@ void testUpdate(u8 idx)
 }
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

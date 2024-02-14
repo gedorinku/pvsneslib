@@ -18,6 +18,7 @@ u8 pada,padb;
 u16 pad0;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

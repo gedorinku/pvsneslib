@@ -18,6 +18,7 @@ s16 mapscx; // camera x variable
 u8 keyl, keyr; // to update move
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

@@ -23,6 +23,7 @@ const t_metasprites metasprite[] =
 };
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

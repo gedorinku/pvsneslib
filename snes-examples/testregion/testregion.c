@@ -14,6 +14,7 @@ extern char snesfont, snespal;
 unsigned short pad0;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

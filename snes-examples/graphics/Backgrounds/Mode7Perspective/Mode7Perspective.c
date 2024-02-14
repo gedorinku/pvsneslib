@@ -23,7 +23,8 @@
     #include <ctype.h>
 
 
-    int main(int argc, char **argv) {
+    int sa1_main(void) {}
+int main(int argc, char **argv) {
         int scale = 1;
         float zoom = 1;
 
@@ -406,6 +407,7 @@ void setMode7_HdmaPerspective(void)
 }
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

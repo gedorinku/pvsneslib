@@ -13,6 +13,7 @@ extern char palette;
 extern char map, map_end;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     unsigned short pad0, pad1 = 0;

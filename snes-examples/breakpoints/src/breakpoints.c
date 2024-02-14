@@ -14,6 +14,7 @@
 extern char tilfont, palfont;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

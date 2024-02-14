@@ -101,6 +101,7 @@ void changeObjSize()
 }
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     unsigned short pad0;

@@ -26,6 +26,7 @@ unsigned short pad0;
 unsigned short xloc, yloc, flipx, frame, frameidx, flip;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

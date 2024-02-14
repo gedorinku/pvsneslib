@@ -42,6 +42,14 @@ tcc__regs_irq dsb 48
 
 .ENDS
 
+.SECTION "sa1glob.data" KEEP
+
+.ENDS
+
+.RAMSECTION "sa1globram.data" BANK $41 SLOT 3 KEEP
+
+.ENDS
+
 .BANK 0                                 ; Defines the ROM bank and the slot it is inserted in memory.
 .ORG 0                                  ; .ORG 0 is really $8000, because the slot starts at $8000
 .SECTION "EmptyVectors" SEMIFREE
@@ -302,6 +310,79 @@ tcc__start:
     stz.b tcc__r1
 
     jsr.l main
+
+    ; write exit code to $fffd
+    lda.b tcc__r0
+    sep #$20
+    sta $fffd
+    rep #$20
+    stp
+
+
+tcc__start_sa1:
+    sei             ; Disabled interrupts
+    clc             ; clear carry to switch to native mode
+    xce             ; Xchange carry & emulation bit. native mode
+    rep     #$18    ; Binary mode (decimal mode off), X/Y 16 bit
+    ldx     #$07FF  ; set stack to $07FF
+    txs
+
+    rep #$30	; all registers 16-bit
+
+    ; direct page points to register set
+    lda.w #tcc__registers
+    tad
+
+    ; copy .data section to RAM
+    ldx #0
+-   lda.l SECTIONSTART_sa1glob.data,x
+    sta.l SECTIONSTART_sa1globram.data,x
+    inx
+    inx
+    cpx #(SECTIONEND_sa1glob.data-SECTIONSTART_sa1glob.data)
+    bcc -
+
+    ; set data bank register to bss section
+    pea $4040
+    plb
+    plb
+
+    ; clear .bss section
+    ; FIXME: SECTIONSTART_.bss、SECTIONEND_.bss が複数存在し、そのうち1つの bss section しか初期化されないのでハードコードしておく。
+    ; ldx #(((SECTIONEND_.bss-SECTIONSTART_.bss) & $fffe) + 2)
+    ldx #($0000 - $2000)
+    beq +
+-   dex
+    dex
+    stz.w $2000, x
+    bne -
++
+
+
+    ; used by memcpy
+    lda #$0054 ; mvn + 1st byte
+    sta.b move_insn
+    lda #$6000 ; 2nd byte + rts
+    sta.b move_insn + 2
+
+    ; used by memmove
+    lda #$0044 ; mvp + 1st byte
+    sta.b move_backwards_insn
+    lda #$6000 ; 2nd byte + rts
+    sta.b move_backwards_insn + 2
+
+    pea $ffff - SECTIONEND_sa1globram.data
+    pea :SECTIONEND_sa1globram.data
+    pea SECTIONEND_sa1globram.data
+    jsr.l sa1_malloc_init
+    pla
+    pla
+    pla
+
+    stz.b tcc__r0
+    stz.b tcc__r1
+
+    jsr.l sa1_main
 
     ; write exit code to $fffd
     lda.b tcc__r0

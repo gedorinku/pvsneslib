@@ -13,6 +13,7 @@ extern char snesfont, snespal;
 unsigned short valToSave = 0xCAFE, valToLoad;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     unsigned short pad0;

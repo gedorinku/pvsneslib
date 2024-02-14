@@ -12,6 +12,7 @@ extern char gfxpsrite, gfxpsrite_end;
 extern char palsprite, palsprite_end;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

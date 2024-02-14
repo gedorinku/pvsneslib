@@ -15,6 +15,7 @@ extern char Maps, Maps_end;
 extern char Mapsc, Mapsc_end;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     short scrX = 0, scrY = 0;

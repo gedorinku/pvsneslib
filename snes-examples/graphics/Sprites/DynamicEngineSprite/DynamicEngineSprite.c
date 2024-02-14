@@ -20,6 +20,7 @@ u8 i;
 
 #define SPRNUMBER 64 // 64 sprites on screen
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

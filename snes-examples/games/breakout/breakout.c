@@ -504,6 +504,7 @@ void run_frame(void)
 }
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

@@ -17,6 +17,7 @@ unsigned short bgcolor = 128;
 u8 keyapressed = 0;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
 

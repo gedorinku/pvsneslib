@@ -15,6 +15,7 @@ extern char mappvsneslib, mappvsneslib_end;
 extern char mapshader, mapshader_end;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     short scrX = 0, scrY = 0;

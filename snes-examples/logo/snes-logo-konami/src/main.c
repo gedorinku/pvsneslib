@@ -9,6 +9,7 @@
 #include <snes.h>
 #include "logo.h"
 
+int sa1_main(void) {}
 int main(void) {
     // Initialize sound engine (take some time)
     spcBoot();

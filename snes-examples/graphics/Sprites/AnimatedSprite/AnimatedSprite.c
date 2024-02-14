@@ -53,6 +53,7 @@ const char sprTiles[9] =
         0, 2, 4, 6, 8, 10, 12, 14, 32}; // Remember that sprites are interleave with 128 pix width,
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     unsigned short pad0, i;

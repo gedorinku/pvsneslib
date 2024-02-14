@@ -24,6 +24,7 @@ extern char BG3_pal, BG3_pal_end;
 extern char BG3_map, BG3_map_end;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
 

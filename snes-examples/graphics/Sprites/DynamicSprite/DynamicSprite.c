@@ -68,6 +68,7 @@ void addSprite(u8 *pgfx, u16 adrspr)
 }
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

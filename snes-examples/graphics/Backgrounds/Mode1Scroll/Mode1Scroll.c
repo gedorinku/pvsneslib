@@ -15,6 +15,7 @@ extern char map, map_end;
 extern char snesfont, snespal;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     u16 scrX = 0, scrY = 0;

@@ -16,6 +16,7 @@ extern unsigned char bgm3, bgm3_end, p3, p3_end, t3, t3_end;
 short sxbg1 = 0, sxbg2 = 0, sxbg3 = 0, flip = 0;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

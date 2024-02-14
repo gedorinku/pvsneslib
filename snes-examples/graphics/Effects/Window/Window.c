@@ -49,6 +49,7 @@ const u8 tablerighttriangle[]=
 };
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

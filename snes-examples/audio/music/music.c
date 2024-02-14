@@ -16,6 +16,7 @@ extern char SOUNDBANK__;
 unsigned short bgcolor = 0;
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
 

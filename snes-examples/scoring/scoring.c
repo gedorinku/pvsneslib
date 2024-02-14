@@ -14,6 +14,7 @@ scoMemory scoretst, scoretst1;
 char sz[128];
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES

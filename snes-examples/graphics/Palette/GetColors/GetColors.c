@@ -20,6 +20,7 @@ u16 colpal;       // unique color palette for test
 u16 arraypals[3]; // array of colors for test
 
 //---------------------------------------------------------------------------------
+int sa1_main(void) {}
 int main(void)
 {
     // Initialize SNES
