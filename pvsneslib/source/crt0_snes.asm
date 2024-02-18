@@ -30,11 +30,10 @@ nmi_handler dsb 4
 tcc__registers_irq dsb 0
 tcc__regs_irq dsb 48
 
-call_s_cpu_func dsb 4
-call_s_cpu_args_size dsb 2
-call_s_cpu_args dsb 32
-call_s_cpu_return dsb 32
-call_s_cpu_return_flag dsb 2
+s_cpu_target_func dsb 4
+s_cpu_args_size dsb 2
+s_cpu_args dsb 32
+s_cpu_return_flag dsb 2
 .ENDS
 
 ; sections "globram.data" and "glob.data" can stay here in the file
@@ -295,13 +294,13 @@ tcc__start:
     ; used by memcpy
     lda #$0054 ; mvn + 1st byte
     sta.b move_insn
-    lda #$6000 ; 2nd byte + rts
+    lda #$6b00 ; 2nd byte + rtl
     sta.b move_insn + 2
 
     ; used by memmove
     lda #$0044 ; mvp + 1st byte
     sta.b move_backwards_insn
-    lda #$6000 ; 2nd byte + rts
+    lda #$6b00 ; 2nd byte + rtl
     sta.b move_backwards_insn + 2
 
     pea $ffff - SECTIONEND_globram.data
@@ -408,7 +407,7 @@ tcc__start_sa1:
     ; used by memcpy
     lda #$0054 ; mvn + 1st byte
     sta.b move_insn
-    lda #$6b00 ; 2nd byte + rts
+    lda #$6b00 ; 2nd byte + rtl
     sta.b move_insn + 2
 
     ; used by memmove
@@ -449,10 +448,11 @@ irq_from_sa1:
     pea $7e7e
     plb
     plb
-    lda.w #tcc__registers_irq
-    tad
+
+    jsl call_s_cpu_target_func
     lda #$1
-    sta.l call_s_cpu_return_flag + $3000
+    sta.l s_cpu_return_flag + $3000
+
     pla
     ply
     plx

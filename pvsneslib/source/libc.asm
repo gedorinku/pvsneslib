@@ -437,6 +437,46 @@ abs:
 exitl4:
       stp
 
+call_s_cpu_target_func:
+      tsa
+      sec
+      sbc.l s_cpu_args_size + $3000
+      sta.b tcc__r0
+      tas
+
+      ; n
+      lda.l s_cpu_args_size + $3000
+      pha
+      ; src
+      pea $0000
+      lda #(s_cpu_args + $3000)
+      pha
+      ; dest
+      pea $0000
+      lda.b tcc__r0
+      inc a
+      pha
+
+      jsl memcpy
+      tsa
+      clc
+      adc #10
+      tas
+
+      sep #$20
+      lda.l s_cpu_target_func + $3000 + 2
+      sta.b tcc__r10 + 2
+      rep #$20
+      lda.l s_cpu_target_func + $3000
+      sta.b tcc__r10
+      jsl tcc__jsl_r10
+
+      tsa
+      clc
+      adc.l s_cpu_args_size + $3000
+      tas
+
+      rtl
 .ENDS
 
 .include "libc_c.asm"
