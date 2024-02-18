@@ -178,6 +178,7 @@
 #include "snes/console.h"
 #include "snes/dma.h"
 #include "snes/interrupt.h"
+#include "snes/libsa1.h"
 #include "snes/map.h"
 #include "snes/object.h"
 #include "snes/pad.h"

@@ -45,6 +45,34 @@
 #include <string.h>
 #include <limits.h>
 
+extern volatile void (*call_s_cpu_func)();
+extern volatile int call_s_cpu_args_size;
+extern volatile char call_s_cpu_args[];
+extern volatile char call_s_cpu_return[];
+extern volatile int call_s_cpu_return_flag;
+
+void call_s_cpu(void (*func)(), size_t ret_size, void *ret, size_t args_size, ...)
+{
+    call_s_cpu_func = func;
+    call_s_cpu_args_size = args_size;
+
+    va_list args;
+    va_start(args, args_size);
+    memcpy(&call_s_cpu_args, args, args_size);
+    va_end(args);
+
+    call_s_cpu_return_flag = 0;
+
+    // IRQ
+    *(char *)(0x2209) = 0xd0;
+
+    while (!call_s_cpu_return_flag) {}
+
+    if (ret != NULL) {
+        memcpy(ret, call_s_cpu_return, ret_size);
+    }
+}
+
 /**
  * @brief Check if a character is a decimal digit.
  *
