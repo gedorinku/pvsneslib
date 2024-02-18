@@ -306,6 +306,35 @@ tcc__start:
     pla
     pla
 
+    ; call sa1_main
+    phb
+    pea $0000
+    plb
+    plb
+
+    lda #$0020 ; SA-1 reset
+    sta $2200
+
+    lda #tcc__start_sa1
+    sta $2203
+
+    sep #$20
+
+    lda #$80
+    sta $2226
+
+    ; allo IRQ from SA-1
+    lda #$a0
+    sta $2201
+    sta $2202
+
+    stz $2200
+    ;lda #$0020 ; SA-1 reset
+    ;sta $2200
+
+    rep #$30
+    plb
+
     stz.b tcc__r0
     stz.b tcc__r1
 
@@ -326,6 +355,14 @@ tcc__start_sa1:
     rep     #$18    ; Binary mode (decimal mode off), X/Y 16 bit
     ldx     #$07FF  ; set stack to $07FF
     txs
+
+    sep #$20
+
+    lda #$80
+    sta $2227
+    stz $2225
+    lda #$ff
+    sta $222a
 
     rep #$30	; all registers 16-bit
 
@@ -354,7 +391,7 @@ tcc__start_sa1:
     beq +
 -   dex
     dex
-    stz.w $2000, x
+    stz.w $0000, x
     bne -
 +
 
@@ -362,13 +399,13 @@ tcc__start_sa1:
     ; used by memcpy
     lda #$0054 ; mvn + 1st byte
     sta.b move_insn
-    lda #$6000 ; 2nd byte + rts
+    lda #$6b00 ; 2nd byte + rts
     sta.b move_insn + 2
 
     ; used by memmove
     lda #$0044 ; mvp + 1st byte
     sta.b move_backwards_insn
-    lda #$6000 ; 2nd byte + rts
+    lda #$6b00 ; 2nd byte + rts
     sta.b move_backwards_insn + 2
 
     pea $ffff - SECTIONEND_sa1globram.data

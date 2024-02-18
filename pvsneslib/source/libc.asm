@@ -21,7 +21,7 @@ memcpy:
       beq +
       dec a
       phb
-      jsr move_insn
+      jsr.l move_insn
       plb
       lda.b 6,s
       sta.b tcc__r0h
@@ -42,7 +42,7 @@ mempcpy:
       beq +
       dec a
       phb
-      jsr move_insn
+      jsr.l move_insn
       plb
 +     lda.b 6,s
       sta.b tcc__r0h
@@ -79,7 +79,7 @@ memmove:
       beq __local_finished
       dec a
       phb
-      jsr move_backwards_insn
+      jsr.l move_backwards_insn
       plb
 __local_finished: rtl
 
