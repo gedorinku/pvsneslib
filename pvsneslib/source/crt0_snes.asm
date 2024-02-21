@@ -33,7 +33,7 @@ tcc__regs_irq dsb 48
 s_cpu_target_func dsb 4
 s_cpu_args_size dsb 2
 s_cpu_args dsb 32
-s_cpu_return_flag dsb 2
+s_cpu_running_flag dsb 2
 .ENDS
 
 ; sections "globram.data" and "glob.data" can stay here in the file
@@ -371,9 +371,6 @@ tcc__start_sa1:
 
     rep #$30	; all registers 16-bit
 
-    lda #irq_from_sa1
-    sta $220c
-
     ; direct page points to register set
     lda.w #tcc__registers
     tad
@@ -435,29 +432,5 @@ tcc__start_sa1:
     sta $fffd
     rep #$20
     stp
-
-irq_from_sa1:
-    rep #$30
-    rep #$30
-    phb
-    phd
-    phx
-    phy
-    pha
-    ; set data bank register to bss section
-    pea $7e7e
-    plb
-    plb
-
-    jsl call_s_cpu_target_func
-    lda #$1
-    sta.l s_cpu_return_flag + $3000
-
-    pla
-    ply
-    plx
-    pld
-    plb
-    rti
 
 .ENDS

@@ -45,10 +45,12 @@
 #include <string.h>
 #include <limits.h>
 
+#include "snes/libsa1.h"
+
 extern volatile void (*s_cpu_target_func)();
 extern volatile size_t s_cpu_args_size;
 extern volatile char s_cpu_args[];
-extern volatile int s_cpu_return_flag;
+extern volatile int s_cpu_running_flag;
 
 void call_s_cpu(void (*func)(), size_t args_size, ...)
 {
@@ -60,12 +62,24 @@ void call_s_cpu(void (*func)(), size_t args_size, ...)
     memcpy(&s_cpu_args, args, args_size);
     va_end(args);
 
-    s_cpu_return_flag = 0;
+    s_cpu_running_flag = 1;
 
-    // IRQ
-    *(char *)(0x2209) = 0xd0;
+    while (s_cpu_running_flag) {}
+}
 
-    while (!s_cpu_return_flag) {}
+void listen_call_from_sa1(void)
+{
+    volatile int *const running_flag = (uint32_t)&s_cpu_running_flag + I_RAM_OFFSET;
+    *running_flag = 0;
+
+    while (1)
+    {
+        if (*running_flag)
+        {
+            call_s_cpu_target_func();
+            *running_flag = 0;
+        }
+    }
 }
 
 /**
