@@ -169,4 +169,5 @@ cleanDebug:
 ifeq ($(DEBUG),1)
 	@echo clean debug files
 	@find . -type f -name "*.dbg" -delete
+	@find . -type f -name "*.ps" -delete
 endif
