@@ -196,7 +196,11 @@ void *sa1_malloc(unsigned int size)
     unit *p;
 
     if (size == 0)
-        return 0;
+    {
+        // mruby/c で長さ0の配列を確保したときなどに malloc(0) するが、0を返すとメモリの確保に失敗したことになってしまうため、適当に 1byte 確保しておく
+        size = 1;
+        // return 0;
+    }
 
     size += 3 + sizeof(unit);
     size >>= 2;
