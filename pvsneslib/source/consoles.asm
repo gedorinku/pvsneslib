@@ -73,15 +73,15 @@ rand:
 
     rep #$30
 
-    lda.w snes_rand_seed2
+    lda.l snes_rand_seed2
     lsr a
-    adc.w snes_rand_seed1
-    sta.w snes_rand_seed1
+    adc.l snes_rand_seed1
+    sta.l snes_rand_seed1
     eor.w #$00ff
-    sta.w tcc__r0
-    lda.w snes_rand_seed2
-    sbc.w tcc__r0
-    sta.w snes_rand_seed2
+    sta.b tcc__r0
+    lda.l snes_rand_seed2
+    sbc.b tcc__r0
+    sta.l snes_rand_seed2
 
     plp
     rtl
